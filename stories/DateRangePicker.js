@@ -83,9 +83,13 @@ storiesOf('DateRangePicker (DRP)', module)
     );
   })
   .addWithInfo('non-english locale (Persian)', () => {
-    moment.locale('fa');
+      moment.locale('fa');
+      momentJalaali.loadPersian({usePersianDigits: false, dialect: 'persian-modern'});
     return (
       <DateRangePickerWrapper
+          isRTL
+          initialStartDate={momentJalaali()}
+          initialEndDate={momentJalaali()}
         renderMonth={month => momentJalaali(month).format('jMMMM jYYYY')}
         renderDay={day => momentJalaali(day).format('jD')}
       />

@@ -50,10 +50,13 @@ storiesOf('SingleDatePicker (SDP)', module)
     );
   })
   .addWithInfo('non-english locale (Persian)', () => {
-    moment.locale('fa');
+      moment.locale('fa');
+      momentJalaali.loadPersian({usePersianDigits: false, dialect: 'persian-modern'});
     return (
       <SingleDatePickerWrapper
+        isRTL
         placeholder="تقویم فارسی"
+        initialDate={momentJalaali()}
         renderMonth={month => momentJalaali(month).format('jMMMM jYYYY')}
         renderDay={day => momentJalaali(day).format('jD')}
       />
