@@ -85,12 +85,12 @@ const defaultProps = {
 
 function getMonths(initialMonth, numberOfMonths, withoutTransitionMonths) {
   let month = initialMonth.clone();
-  if (!withoutTransitionMonths) month = month.subtract(1, 'month');
+  if (!withoutTransitionMonths) month = month.subtract(1, 'jMonth');
 
   const months = [];
   for (let i = 0; i < (withoutTransitionMonths ? numberOfMonths : numberOfMonths + 2); i += 1) {
     months.push(month);
-    month = month.clone().add(1, 'month');
+    month = month.clone().add(1, 'jMonth');
   }
 
   return months;
@@ -135,10 +135,10 @@ class CalendarMonthGrid extends React.Component {
     if (hasMonthChanged && !hasNumberOfMonthsChanged) {
       if (isAfterDay(initialMonth, this.props.initialMonth)) {
         newMonths = months.slice(1);
-        newMonths.push(months[months.length - 1].clone().add(1, 'month'));
+        newMonths.push(months[months.length - 1].clone().add(1, 'jMonth'));
       } else {
         newMonths = months.slice(0, months.length - 1);
-        newMonths.unshift(months[0].clone().subtract(1, 'month'));
+        newMonths.unshift(months[0].clone().subtract(1, 'jMonth'));
       }
     }
 

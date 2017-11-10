@@ -137,7 +137,7 @@ class DayPicker extends React.Component {
 
     const currentMonth = props.hidden ? moment() : props.initialVisibleMonth();
 
-    let focusedDate = currentMonth.clone().startOf('month');
+    let focusedDate = currentMonth.clone().startOf('jMonth');
     if (props.getFirstFocusableDay) {
       focusedDate = props.getFirstFocusableDay(currentMonth);
     }
@@ -268,7 +268,7 @@ class DayPicker extends React.Component {
     switch (e.key) {
       case 'ArrowUp':
         e.preventDefault();
-        newFocusedDate.subtract(1, 'week');
+        newFocusedDate.subtract(1, 'jWeek');
         didTransitionMonth = this.maybeTransitionPrevMonth(newFocusedDate);
         break;
       case 'ArrowLeft':
@@ -282,18 +282,18 @@ class DayPicker extends React.Component {
         break;
       case 'Home':
         e.preventDefault();
-        newFocusedDate.startOf('week');
+        newFocusedDate.startOf('jWeek');
         didTransitionMonth = this.maybeTransitionPrevMonth(newFocusedDate);
         break;
       case 'PageUp':
         e.preventDefault();
-        newFocusedDate.subtract(1, 'month');
+        newFocusedDate.subtract(1, 'jMonth');
         didTransitionMonth = this.maybeTransitionPrevMonth(newFocusedDate);
         break;
 
       case 'ArrowDown':
         e.preventDefault();
-        newFocusedDate.add(1, 'week');
+        newFocusedDate.add(1, 'jWeek');
         didTransitionMonth = this.maybeTransitionNextMonth(newFocusedDate);
         break;
       case 'ArrowRight':
@@ -312,7 +312,7 @@ class DayPicker extends React.Component {
         break;
       case 'PageDown':
         e.preventDefault();
-        newFocusedDate.add(1, 'month');
+        newFocusedDate.add(1, 'jMonth');
         didTransitionMonth = this.maybeTransitionNextMonth(newFocusedDate);
         break;
 
@@ -416,7 +416,7 @@ class DayPicker extends React.Component {
     }
 
     if (newMonth && (!focusedDate || !isDayVisible(focusedDate, newMonth, numberOfMonths))) {
-      focusedDate = newMonth.clone().startOf('month');
+      focusedDate = newMonth.clone().startOf('jMonth');
     }
 
     return focusedDate;
@@ -446,8 +446,8 @@ class DayPicker extends React.Component {
     const { numberOfMonths } = this.props;
     const { currentMonth, focusedDate } = this.state;
 
-    const newFocusedDateMonth = newFocusedDate.month();
-    const focusedDateMonth = focusedDate.month();
+    const newFocusedDateMonth = newFocusedDate.jMonth();
+    const focusedDateMonth = focusedDate.jMonth();
     const isNewFocusedDateVisible = isDayVisible(newFocusedDate, currentMonth, numberOfMonths);
     if (newFocusedDateMonth !== focusedDateMonth && !isNewFocusedDateVisible) {
       this.onNextMonthClick(newFocusedDate);
@@ -461,8 +461,8 @@ class DayPicker extends React.Component {
     const { numberOfMonths } = this.props;
     const { currentMonth, focusedDate } = this.state;
 
-    const newFocusedDateMonth = newFocusedDate.month();
-    const focusedDateMonth = focusedDate.month();
+    const newFocusedDateMonth = newFocusedDate.jMonth();
+    const focusedDateMonth = focusedDate.jMonth();
     const isNewFocusedDateVisible = isDayVisible(newFocusedDate, currentMonth, numberOfMonths);
     if (newFocusedDateMonth !== focusedDateMonth && !isNewFocusedDateVisible) {
       this.onPrevMonthClick(newFocusedDate);
@@ -512,10 +512,10 @@ class DayPicker extends React.Component {
     const newMonth = currentMonth.clone();
     if (monthTransition === PREV_TRANSITION) {
       if (onPrevMonthClick) onPrevMonthClick();
-      newMonth.subtract(1, 'month');
+      newMonth.subtract(1, 'jMonth');
     } else if (monthTransition === NEXT_TRANSITION) {
       if (onNextMonthClick) onNextMonthClick();
-      newMonth.add(1, 'month');
+      newMonth.add(1, 'jMonth');
     }
 
     let newFocusedDate = null;

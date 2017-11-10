@@ -344,7 +344,7 @@ export default class DayPickerSingleDateController extends React.Component {
       newVisibleDays[month] = visibleDays[month];
     });
 
-    const prevMonth = currentMonth.clone().subtract(1, 'month');
+    const prevMonth = currentMonth.clone().subtract(1, 'jMonth');
     const prevMonthVisibleDays = getVisibleDays(prevMonth, 1, enableOutsideDays);
 
     this.setState({
@@ -367,10 +367,10 @@ export default class DayPickerSingleDateController extends React.Component {
       newVisibleDays[month] = visibleDays[month];
     });
 
-    const nextMonth = currentMonth.clone().add(numberOfMonths, 'month');
+    const nextMonth = currentMonth.clone().add(numberOfMonths, 'jMonth');
     const nextMonthVisibleDays = getVisibleDays(nextMonth, 1, enableOutsideDays);
 
-    const newCurrentMonth = currentMonth.clone().add(1, 'month');
+    const newCurrentMonth = currentMonth.clone().add(1, 'jMonth');
     this.setState({
       currentMonth: newCurrentMonth,
       visibleDays: {
@@ -386,14 +386,14 @@ export default class DayPickerSingleDateController extends React.Component {
   getFirstFocusableDay(newMonth) {
     const { date, numberOfMonths } = this.props;
 
-    let focusedDate = newMonth.clone().startOf('month');
+    let focusedDate = newMonth.clone().startOf('jMonth');
     if (date) {
       focusedDate = date.clone();
     }
 
     if (this.isBlocked(focusedDate)) {
       const days = [];
-      const lastVisibleDay = newMonth.clone().add(numberOfMonths - 1, 'months').endOf('month');
+      const lastVisibleDay = newMonth.clone().add(numberOfMonths - 1, 'months').endOf('jMonth');
       let currentDay = focusedDate.clone();
       while (!isAfterDay(currentDay, lastVisibleDay)) {
         currentDay = currentDay.clone().add(1, 'day');
@@ -449,7 +449,7 @@ export default class DayPickerSingleDateController extends React.Component {
     let currentMonth = firstVisibleMonth;
     let numberOfMonths = numberOfVisibleMonths;
     if (orientation !== VERTICAL_SCROLLABLE) {
-      currentMonth = currentMonth.clone().subtract(1, 'month');
+      currentMonth = currentMonth.clone().subtract(1, 'jMonth');
       numberOfMonths += 2;
     }
     if (!day || !isDayVisible(day, currentMonth, numberOfMonths, enableOutsideDays)) {
@@ -501,7 +501,7 @@ export default class DayPickerSingleDateController extends React.Component {
     let currentMonth = firstVisibleMonth;
     let numberOfMonths = numberOfVisibleMonths;
     if (orientation !== VERTICAL_SCROLLABLE) {
-      currentMonth = currentMonth.clone().subtract(1, 'month');
+      currentMonth = currentMonth.clone().subtract(1, 'jMonth');
       numberOfMonths += 2;
     }
     if (!day || !isDayVisible(day, currentMonth, numberOfMonths, enableOutsideDays)) {

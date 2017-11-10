@@ -192,7 +192,7 @@ class CalendarMonth extends React.Component {
                   <CalendarDay
                     day={day}
                     daySize={daySize}
-                    isOutsideDay={!day || day.month() !== month.month()}
+                    isOutsideDay={!day || day.jMonth() !== month.jMonth()}
                     tabIndex={isVisible && isSameDay(day, focusedDate) ? 0 : -1}
                     isFocused={isFocused}
                     key={dayOfWeek}
